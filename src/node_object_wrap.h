@@ -46,6 +46,7 @@ class NODE_EXTERN ObjectWrap {
 
   virtual ~ObjectWrap ( ) {
     if (!handle_.IsEmpty()) {
+      v8::HandleScope scope;
       assert(handle_.IsNearDeath());
       handle_.ClearWeak();
       handle_->SetInternalField(0, v8::Undefined());
